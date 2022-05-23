@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace GetCodeDev\TestLevenshtein\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class TestLevenshteinCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'test-levenshtein';
 
     public $description = 'My command';
 
