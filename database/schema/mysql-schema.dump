@@ -27,7 +27,7 @@ CREATE TABLE `homes` (
   `street` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `state` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zip` mediumint(9) NOT NULL,
+  `zip` mediumint(8) unsigned NOT NULL,
   `full_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -206,8 +206,8 @@ INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1);
 INSERT INTO `migrations` VALUES (2,'2014_10_12_100000_create_password_resets_table',1);
 INSERT INTO `migrations` VALUES (3,'2019_08_19_000000_create_failed_jobs_table',1);
 INSERT INTO `migrations` VALUES (4,'2019_12_14_000001_create_personal_access_tokens_table',1);
-INSERT INTO `migrations` VALUES (6,'2022_05_25_173453_create_levenstein_function',2);
-INSERT INTO `migrations` VALUES (7,'2022_05_25_185433_add_columns_to_users_table',3);
-INSERT INTO `migrations` VALUES (8,'2022_05_25_190323_create_homes_table',3);
-INSERT INTO `migrations` VALUES (9,'2022_05_25_191155_add_users_homes_references',4);
-INSERT INTO `migrations` VALUES (12,'2022_05_27_162444_create_jobs_table',5);
+INSERT INTO `migrations` VALUES (5,'2022_05_25_173453_create_levenstein_function',1);
+INSERT INTO `migrations` VALUES (6,'2022_05_25_180323_create_homes_table',1);
+INSERT INTO `migrations` VALUES (7,'2022_05_25_185433_add_columns_to_users_table',1);
+INSERT INTO `migrations` VALUES (8,'2022_05_25_191155_add_users_homes_references',1);
+INSERT INTO `migrations` VALUES (9,'2022_05_27_162444_create_jobs_table',1);
