@@ -4,10 +4,16 @@ namespace GetCodeDev\TestLevenshtein;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use GetCodeDev\TestLevenshtein\Commands\TestLevenshteinCommand;
+use GetCodeDev\TestLevenshtein\Commands\SeedCommand;
+use GetCodeDev\TestLevenshtein\TestLevenshtein;
 
 class TestLevenshteinServiceProvider extends PackageServiceProvider
 {
+    public function bootingPackage()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+
     public function configurePackage(Package $package): void
     {
         /*
@@ -18,8 +24,12 @@ class TestLevenshteinServiceProvider extends PackageServiceProvider
         $package
             ->name('test-levenshtein')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_test-levenshtein_table')
-            ->hasCommand(TestLevenshteinCommand::class);
+            ->hasCommand(SeedCommand::class);
+
+        require_once($package->basePath('helpers.php'));
+
+        $this->app->bind('test-levenshtein', function($app) {
+            return new TestLevenshtein();
+        });
     }
 }

@@ -3,11 +3,15 @@
 namespace GetCodeDev\TestLevenshtein\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase as Orchestra;
 use GetCodeDev\TestLevenshtein\TestLevenshteinServiceProvider;
 
 class TestCase extends Orchestra
 {
+    use RefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -26,11 +30,11 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_test-levenshtein_table.php.stub';
-        $migration->up();
-        */
+    }
+
+    protected function migrateFreshUsing()
+    {
+        return ['--schema-path' => 'database/schema/mysql-schema.dump'];
     }
 }
