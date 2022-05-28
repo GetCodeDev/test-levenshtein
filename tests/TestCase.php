@@ -25,13 +25,14 @@ class TestCase extends Orchestra
     {
         return [
             TestLevenshteinServiceProvider::class,
+            \Kirschbaum\PowerJoins\PowerJoinsServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    /*public function getEnvironmentSetUp($app)
     {
 
-    }
+    }*/
 
     protected function migrateFreshUsing()
     {

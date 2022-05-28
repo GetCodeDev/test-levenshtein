@@ -112,7 +112,7 @@ class TestLevenshtein
                 $table = $this->getRelationTableName($key);
                 $relation = $key;
 
-                $this->query->joinRelationship($key);
+                $this->query->joinRelationship($relation);
                 continue;
             }
 
@@ -336,7 +336,7 @@ class TestLevenshtein
          * If priority columns are empty,
          * set search columns that are string (not relation array)
          */
-        if (empty($this->getSearch())) {
+        if (empty($this->priority_columns)) {
             return collect($this->getSearch())
                 ->filter(function($item, $key) {
                     return is_string($item);

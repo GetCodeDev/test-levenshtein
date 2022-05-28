@@ -2,9 +2,12 @@
 
 if (! function_exists('check_duplicates')) {
     /**
-     * @param string $model
-     * @param array  $search
-     * @param array  $concat_search_columns
+     * @param string   $model
+     * @param array    $search
+     * @param array    $concat_search_columns
+     * @param array    $priority_columns
+     * @param int      $limit
+     * @param int|null $with_similarity_min_common
      *
      * @return array
      */
@@ -33,12 +36,15 @@ if (! function_exists('check_duplicates')) {
                 $app->withSimilarityMinCommon($with_similarity_min_common);
             }
 
-            return $app
+            $items = $app
                 ->checkDuplicates();
 
-        } catch (\Throwable $e) {
-            dd($e);
+            return [
+                'success' => true,
+                'items'   => $items,
+            ];
 
+        } catch (\Throwable $e) {
             return [
                 'success' => false,
                 'message' => $e->getMessage(),
