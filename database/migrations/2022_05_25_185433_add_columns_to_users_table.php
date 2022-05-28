@@ -18,9 +18,6 @@ return new class extends Migration
             $table->string('last_name')->after('first_name');
             $table->string('phone')->after('last_name');
 
-            $table->unsignedInteger('home_id');
-            $table->foreign('home_id')->references('id')->on('homes');
-
             $table->softDeletes();
         });
     }

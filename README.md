@@ -10,14 +10,6 @@
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/test-levenshtein.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/test-levenshtein)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
-
 ## Installation
 
 You can install the package via composer:
@@ -33,35 +25,41 @@ php artisan vendor:publish --tag="test-levenshtein-migrations"
 php artisan migrate
 ```
 
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="test-levenshtein-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="test-levenshtein-views"
-```
-
 ## Usage
 
 ```php
-$testLevenshtein = new GetCodeDev\TestLevenshtein();
-echo $testLevenshtein->echoPhrase('Hello, GetCodeDev!');
+$duplicates = check_duplicates(
+    model: User::class,
+    search: [
+        'first_name' => 'John',
+        'home' => [
+            'address' => "bbbbb, rrr BB, 77777",
+        ],
+    ],
+    concat_search_columns: [
+        'home' => [
+            'address' => 'homes.street, homes.city homes.state, homes.zip',
+        ],
+    ],
+    priority_columns: [
+        'homes.address',
+        'users.first_name',
+    ],
+    with_similarity_min_common: 50,
+    limit: 10
+);
 ```
 
 ## Testing
 
 ```bash
+
+# 1. clone this package
+
+# 2. Then need to set configs for mysql connection in phpunit.xml
+cp phpunit.xml.dist phpunit.xml
+
+# 3. Run tests
 composer test
 ```
 
