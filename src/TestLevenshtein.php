@@ -85,13 +85,13 @@ class TestLevenshtein
         $this->prepareQueryOrderByAndHaving();
         $this->prepareQueryLimit();
 
-        dd(
+        /*dd(
             $this->getSearch(),
             $this->getConcatSearchColumns(),
             $this->getPriorityColumns(),
             $this->needUsingSimilarityMinCommon(),
             full_sql_from_query($this->query)
-        );
+        );*/
 
         return $this->query->get()->toArray();
     }
