@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('users')) {
+        if (Schema::hasTable('users')) {
             return;
         }
 
