@@ -54,7 +54,8 @@ $duplicates = check_duplicates(
 
 ```bash
 
-# 1. clone this package
+# 1. clone this package && run composer install
+composer install
 
 # 2. Then need to set configs for mysql connection in phpunit.xml
 cp phpunit.xml.dist phpunit.xml
